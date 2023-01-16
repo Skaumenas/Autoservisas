@@ -1,0 +1,10 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1>This is autoservice</h1>
+<p>At this moment there is:</p>
+<ul>
+    <li>Orders: {{ num_paslaugos }}</li>
+    <li>Done orders: {{ num_done_orders }}</li>
+    <li>Vehicle count: {{ num_cars }}</li>
+</ul>
+{% endblock %}

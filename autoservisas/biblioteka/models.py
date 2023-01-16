@@ -18,13 +18,13 @@ class Automobilis(models.Model):
     vin_kodas = models.TextField('VIN_kodas', max_length=17, help_text='Įveskite automobilio VIN kodą.')
     klientas = models.TextField('Klientas', max_length=25, help_text='Įveskite automobilio savininką.')
 
-    uzsakymo_eilute = models.ManyToManyField(Paslauga, help_text='Išrinkite užsakymą/us.')
+    # uzsakymo_eilute = models.ManyToManyField(Paslauga, help_text='Išrinkite užsakymą/us.')
 
     def __str__(self):
-        return self.klientas
+        return f"{self.klientas}, {self.automobilis_id}"
 
-    def get_absolute_url(self):
-        return reverse('book-detail', args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse('book-detail', args=[str(self.id)])
 
 
 class Uzsakymas(models.Model):
@@ -46,11 +46,14 @@ class AutomobilisModelis(models.Model):
     modelis = models.CharField('Modelis', max_length=20)
     variklis = models.CharField('Variklis', max_length=20)
 
+    # class Meta:
+    #     ordering = ['marke', 'modelis']
     class Meta:
-        ordering = ['marke', 'modelis']
+        verbose_name = "Modelis"
+        verbose_name_plural = "Modeliai"
 
-    def get_absolute_url(self):
-        return reverse('author-detail', args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse('author-detail', args=[str(self.id)])
 
     def __str__(self):
         return f'{self.marke}, {self.modelis}'
@@ -59,8 +62,24 @@ class AutomobilisModelis(models.Model):
 class UzsakymoEilute(models.Model):
     paslauga_id = models.ForeignKey('Paslauga', on_delete=models.SET_NULL, null=True)
     uzsakymas_id = models.ForeignKey('Uzsakymas', on_delete=models.SET_NULL, null=True)
-    kiekis = models.CharField('Kiekis', max_length=200, help_text='Įveskite paslaugų kiekį.')
+    kiekis = models.IntegerField('Kiekis', help_text='Įveskite paslaugų kiekį.')
     kaina = models.CharField('Kaina', max_length=200, help_text='Įveskite paslaugų kainą.')
 
+    LOAN_STATUS = (
+        ("a", "Administruojama"),
+        ("t", "tvarkoma"),
+        ("b", "baigta"),
+        ("p", "pasiimti"),
+        ("d", "atiduota")
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=LOAN_STATUS,
+        blank=True,
+        default="a",
+        help_text="Status"
+    )
+
     def __str__(self):
-        return f'{self.kiekis}, {self.kaina}'
+        return f'{self.paslauga_id} - {self.kiekis}: {self.kaina}'
