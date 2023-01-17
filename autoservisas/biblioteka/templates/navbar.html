@@ -17,8 +17,8 @@
             {% block sidebar %}
             <ul class="sidebar-nav">
                 <li><a href="{% url 'index' %}">Pradžia</a></li>
-                <li><a href="">Visi automobiliai</a></li>
-                <li><a href="">Visi uzsakymai</a></li>
+                <li><a href="{% url 'auto' %}">Visi automobiliai</a></li>
+                <li><a href="{% url 'order' %}">Visi uzsakymai</a></li>
             </ul>
             {% endblock %}
         </div>

@@ -1,0 +1,13 @@
+{% extends "navbar.html" %}
+{% block content %}
+<h1>Order list:</h1>
+{% if uzsakymas_list %}
+<ul>
+    {% for order_obj in uzsakymas_list %}
+    <li>{{ order_obj.automobilis.klientas }}, {{ order_obj.automobilis.automobilis_id }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There is no orders at the time.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "navbar.html" %}
+{% block content %}
+<div>
+  <h2>Car {{ autos.marke }}:</h2>
+  <hr/>
+  <p>Model: {{ autos.modelis }}</p>
+  <p>Year: {{ autos.metai }}</p>
+  <p>Engine: {{ autos.variklis }}</p>
+  <p>Nr: {{ cars.valstybinis_nr }}</p>
+  <p>VIN code: {{ cars.vin_kodas }} </p>
+  <p>Owner: {{ cars.klientas }}</p>
+</div>
+
+
+{% endblock %}

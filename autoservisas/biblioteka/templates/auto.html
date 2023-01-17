@@ -1,0 +1,9 @@
+{% extends "navbar.html" %}
+{% block content %}
+<h1>Cars</h1>
+<p>All cars: </p>
+{% for auto_obj in autos %}
+<li> <a href="{% url 'cars-detail' auto_obj.id %}">
+    {{auto_obj.marke}} {{auto_obj.modelis}} {{auto_obj.metai}}</a></li>
+{% endfor %}
+{% endblock %}

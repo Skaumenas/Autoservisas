@@ -22,5 +22,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('autoservice/', include('biblioteka.urls')),
     path('admin/', admin.site.urls),
-    path("", RedirectView.as_view(url="autoservice/", permanent=True))
+    path("", RedirectView.as_view(url="autoservice/"))
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
